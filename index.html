@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>לינקי — שלח קישור, קבל טקסט</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;800&display=swap" rel="stylesheet">
+    <meta property="og:title" content="לינקי — שלח קישור, קבל טקסט">
+    <meta property="og:description" content="שלח כל קישור, סרטון, תמונה או קובץ — קבל טקסט מלא בעברית. בחינם.">
+    <meta property="og:url" content="https://shalevgigi-vks.github.io/Linky-Live/">
+    <meta property="og:locale" content="he_IL">
+    <style>
+        :root {
+            --bg: #f5f3ff;
+            --surface: #ffffff;
+            --accent: #7c3aed;
+            --accent-light: #ede9fe;
+            --accent-dark: #5b21b6;
+            --green: #10b981;
+            --text: #1e1b4b;
+            --text-2: #4338ca;
+            --text-muted: #6b7280;
+            --radius: 16px;
+            --shadow: 0 2px 8px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 24px 40px;
+            max-width: 600px;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-2);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(124,58,237,0.25);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--accent);
+            border: 2px solid var(--accent-light);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            max-width: 700px;
+            padding: 0 24px;
+            margin-bottom: 48px;
+            width: 100%;
+        }
+
+        .feature {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+
+        .feature-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .how {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 32px;
+            max-width: 500px;
+            margin: 0 24px 48px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            width: calc(100% - 48px);
+        }
+
+        .how-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-dark);
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            text-align: right;
+        }
+
+        .step {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .step-text {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding-top: 4px;
+        }
+
+        .status-bar {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-text {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .footer {
+            padding: 24px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+            .hero { padding: 40px 16px 24px; }
+            .logo { font-size: 2.4rem; }
+            .features { grid-template-columns: 1fr; padding: 0 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="logo">לינקי</div>
+        <div class="tagline">שלח קישור — קבל טקסט</div>
+        <p class="subtitle">שלח כל קישור, סרטון, תמונה, PDF או קובץ Word — וקבל טקסט מלא בעברית. בחינם, אוטומטי, מהיר.</p>
+    </div>
+
+    <div class="status-bar">
+        <div class="status-dot"></div>
+        <span class="status-text">הבוט פעיל ומקבל הודעות</span>
+    </div>
+
+    <div class="cta-row">
+        <a href="https://t.me/ltt_shalev_bot" class="btn btn-primary" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            פתח בטלגרם
+        </a>
+        <a href="https://linktotext.vercel.app" class="btn btn-secondary" target="_blank">
+            ממשק Web
+        </a>
+    </div>
+
+    <div class="features">
+        <div class="feature">
+            <span class="feature-icon">🎬</span>
+            <div class="feature-title">סרטוני YouTube</div>
+            <div class="feature-desc">תמלול מלא עם 9 אסטרטגיות חילוץ — גם סרטונים חסומים</div>
+        </div>
+        <div class="feature">
+            <span class="feature-icon">🖼️</span>
+            <div class="feature-title">תמונות וצילומי מסך</div>
+            <div class="feature-desc">OCR חכם — מזהה טקסט מכל תמונה</div>
+        </div>
+        <div class="feature">
+            <span class="feature-icon">📄</span>
+            <div class="feature-title">PDF ו-Word</div>
+            <div class="feature-desc">חילוץ טקסט מלא מקבצי מסמכים</div>
+        </div>
+        <div class="feature">
+            <span class="feature-icon">🌐</span>
+            <div class="feature-title">כל רשת חברתית</div>
+            <div class="feature-desc">TikTok, Instagram, Facebook, X ועוד</div>
+        </div>
+        <div class="feature">
+            <span class="feature-icon">🇮🇱</span>
+            <div class="feature-title">עברית תמיד</div>
+            <div class="feature-desc">תרגום אוטומטי לעברית נקייה וזורמת</div>
+        </div>
+        <div class="feature">
+            <span class="feature-icon">⚡</span>
+            <div class="feature-title">מהיר וחינמי</div>
+            <div class="feature-desc">ללא הרשמה, ללא תשלום, ללא הגבלה</div>
+        </div>
+    </div>
+
+    <div class="how">
+        <div class="how-title">איך זה עובד?</div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text">פתח את <strong>@ltt_shalev_bot</strong> בטלגרם</div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text">שלח קישור, תמונה, PDF או כל קובץ</div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text">קבל טקסט מלא בעברית תוך שניות</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        לינקי — כלי חינמי לחילוץ טקסט מכל מקור
+    </div>
+
+</body>
+</html>
